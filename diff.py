@@ -36,7 +36,8 @@ def subtract_lists(list1, list2, position):
             string += '\t' * position[index]
         difference.append(string.replace('.', ','))
     diffVal, pctVal = diff(oldBalance, newBalance)
-    difference.append('\t%.2f (%.2f%%)' % (diffVal, pctVal))
+    difference.append(('\t%.2f (%.2f%%)' % (diffVal, pctVal)
+                       ).replace('.', ',').replace('\t', ''))
     return difference, oldBalance, newBalance
 
 
@@ -80,6 +81,6 @@ if __name__ == "__main__":
     pyperclip.copy('\t'.join(diffList))
     print('Result copied to clipboard')
     print('This month your balance was: R$ ' +
-          diffList[len(diffList) - 1].replace('.', ',').replace('\t', ''))
+          diffList[len(diffList) - 1])
     print('Old balance: R$ ' + ('%.2f' % oldBalance).replace('.', ','))
     print('New balance: R$ ' + ('%.2f' % newBalance).replace('.', ','))
